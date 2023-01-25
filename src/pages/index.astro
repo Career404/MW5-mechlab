@@ -1,12 +1,15 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from '../layouts/baseLayout.astro'
 import Header from '../components/Header.astro'
+import Carousel from '../components/Carousel.astro'
 
-import '../static/global.scss'
+import '../styles/global.scss'
 ---
 
 <BaseLayout title="MW5 mech list">
 	<Header
 		title="Zhukov's MechWarrior 5: Mercenaries Mech list and Build tool"
+		sub="On this page you can see all the mechs presented in Piranha Games 2019 Mechwarrior 5: Mercenaries, sorted by weight class, and short descriptions for each."
 	/>
+	<Carousel />
 </BaseLayout>

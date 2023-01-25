@@ -1,0 +1,210 @@
+---
+//TODO fill carousel dynamically
+//style="background-image: url({mech});"
+const mechList = {
+	light: [
+		'COMMANDO',
+		'FIRESTARTER',
+		'FLEA',
+		'JAVELIN',
+		'JENNER',
+		'LOCUST',
+		'PANTHER',
+		'RAVEN',
+		'SPIDER',
+		'URBANMECH',
+		'WOLFHOUND',
+	],
+	medium: [
+		'ASSASSIN',
+		'BLACKJACK',
+		'CENTURION',
+		'CICADA',
+		'CRAB',
+		'ENFORCER',
+		'GRIFFIN',
+		'HUNCHBACK',
+		'KINTARO',
+		'PHOENIX HAWK',
+		'SHADOW HAWK',
+		'TREBUCHET',
+		'VINDICATOR',
+		'WOLVERINE',
+	],
+	heavy: [
+		'ARCHER',
+		'BLACK KNIGHT',
+		'CATAPHRACT',
+		'CATAPULT',
+		'DRAGON',
+		'GRASSHOPPER',
+		'JAGERMECH',
+		'MARAUDER',
+		'ORION',
+		'QUICKDRAW',
+		'RIFLEMAN',
+		'THUNDERBOLT',
+		'WARHAMMER',
+	],
+	assault: [
+		'ANNIHILATOR',
+		'ATLAS',
+		'AWESOME',
+		'BANSHEE',
+		'BATTLEMASTER',
+		'CYCLOPS',
+		'HIGHLANDER',
+		'KING CRAB',
+		'MAULER',
+		'NIGHTSTAR',
+		'STALKER',
+		'VICTOR',
+		'ZEUS',
+	],
+}
+---
+
+<div>
+	<h3>Light mechs (20-35 tons)</h3>
+
+	<div class="reelwrap">
+		<div class="reel">
+			{
+				mechList.light.map((mech) => (
+					<a class="mechCard">
+						<div>{mech}</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+
+	<h3>Medium mechs (40-55 tons)</h3>
+	<div class="reelwrap">
+		<div class="reel">
+			{
+				mechList.medium.map((mech) => (
+					<a class="mechCard">
+						<div>{mech}</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+	<h3>Heavy mechs (60-75 tons)</h3>
+	<div class="reelwrap">
+		<div class="reel">
+			{
+				mechList.heavy.map((mech) => (
+					<a class="mechCard">
+						<div>{mech}</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+	<h3>Assault mechs (80-100 tons)</h3>
+	<div class="reelwrap">
+		<div class="reel">
+			{
+				mechList.assault.map((mech) => (
+					<a class="mechCard">
+						<div>{mech}</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</div>
+<style>
+	h3 {
+		text-align: center;
+		font-size: 1.2rem;
+	}
+	.reelwrap {
+		position: relative;
+	}
+	.reel {
+		height: 250px;
+		overflow-x: auto;
+		overflow-y: visible;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		gap: 10px;
+		padding: 0px 25px;
+	}
+	.reelwrap::before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-right: 15px solid rgba(0, 0, 0, 0.795);
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		transform: translateY(-50%);
+		z-index: 1;
+		cursor: pointer;
+	}
+	.reelwrap::after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 15px solid rgba(0, 0, 0, 0.795);
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		transform: translateY(-50%);
+		z-index: 1;
+		cursor: pointer;
+	}
+	.reel::-webkit-scrollbar {
+		height: 10px;
+	}
+	.reel::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	.reel::-webkit-scrollbar-thumb {
+		background-color: rgb(0, 0, 0);
+		height: 5px;
+		border-radius: 10px;
+		box-shadow: 0 0 5px black;
+	}
+	.mechCard {
+		flex: 0 0 150px;
+		height: 90%;
+		background-color: rgba(211, 211, 211, 0.547);
+		box-shadow: 0px 0px 4px 4px rgba(104, 104, 104, 0.945);
+		text-align: center;
+		line-height: 400px;
+		overflow-y: hidden;
+	}
+	.mechCard:hover {
+		filter: brightness(125%);
+		line-height: 220px;
+		font-size: 1.1rem;
+		font-weight: bold;
+		backdrop-filter: brightness(20%);
+	}
+</style>
+<script>
+	const container = document.querySelectorAll('.reel')
+	const wrap = document.querySelectorAll('.wrap')
+
+	Array.from(container).forEach((el) => {
+		el.addEventListener('wheel', function (event) {
+			event.preventDefault()
+			var delta = event.deltaX || event.deltaY
+			el.scrollLeft += delta * 1.5
+		})
+	})
+	Array.from(wrap).forEach((wrapper) => {
+		console.log(wrapper.querySelector(':before'))
+	})
+</script>
