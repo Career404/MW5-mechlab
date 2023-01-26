@@ -1,66 +1,76 @@
 ---
-//TODO fill carousel dynamically
-//style="background-image: url({mech});"
+//TODO mechlist from outer file?
+import MechCard from './MechCard.astro'
+
 const mechList = {
-	light: [
-		'COMMANDO',
-		'FIRESTARTER',
-		'FLEA',
-		'JAVELIN',
-		'JENNER',
-		'LOCUST',
-		'PANTHER',
-		'RAVEN',
-		'SPIDER',
-		'URBANMECH',
-		'WOLFHOUND',
-	],
-	medium: [
-		'ASSASSIN',
-		'BLACKJACK',
-		'CENTURION',
-		'CICADA',
-		'CRAB',
-		'ENFORCER',
-		'GRIFFIN',
-		'HUNCHBACK',
-		'KINTARO',
-		'PHOENIX HAWK',
-		'SHADOW HAWK',
-		'TREBUCHET',
-		'VINDICATOR',
-		'WOLVERINE',
-	],
-	heavy: [
-		'ARCHER',
-		'BLACK KNIGHT',
-		'CATAPHRACT',
-		'CATAPULT',
-		'DRAGON',
-		'GRASSHOPPER',
-		'JAGERMECH',
-		'MARAUDER',
-		'ORION',
-		'QUICKDRAW',
-		'RIFLEMAN',
-		'THUNDERBOLT',
-		'WARHAMMER',
-	],
-	assault: [
-		'ANNIHILATOR',
-		'ATLAS',
-		'AWESOME',
-		'BANSHEE',
-		'BATTLEMASTER',
-		'CYCLOPS',
-		'HIGHLANDER',
-		'KING CRAB',
-		'MAULER',
-		'NIGHTSTAR',
-		'STALKER',
-		'VICTOR',
-		'ZEUS',
-	],
+	light: {
+		COMMANDO: '',
+		FIRESTARTER: '',
+		FLEA: '',
+		JAVELIN: '',
+		JENNER: '',
+		LOCUST: '',
+		PANTHER: '',
+		RAVEN: '',
+		SPIDER: '',
+		URBANMECH: '',
+		WOLFHOUND: '',
+	},
+	medium: {
+		ASSASSIN: '',
+		BLACKJACK: '',
+		CENTURION: '',
+		CICADA: '',
+		CRAB: '',
+		DERVISH: 'HOTIS',
+		ENFORCER: '',
+		GRIFFIN: '',
+		HATCHETMAN: 'ARMS',
+		HUNCHBACK: '',
+		KINTARO: '',
+		'PHOENIX HAWK': '',
+		'SHADOW HAWK': '',
+		TREBUCHET: '',
+		VINDICATOR: '',
+		VULCAN: '',
+		WOLVERINE: '',
+	},
+	heavy: {
+		ARCHER: '',
+		'BLACK KNIGHT': '',
+		CATAPHRACT: '',
+		CATAPULT: '',
+		CHAMPION: 'HOTIS',
+		CRUSADER: 'RAS',
+		DRAGON: '',
+		GRASSHOPPER: '',
+		JAGERMECH: '',
+		MARAUDER: '',
+		ORION: '',
+		QUICKDRAW: '',
+		RIFLEMAN: '',
+		THUNDERBOLT: '',
+		WARHAMMER: '',
+	},
+	assault: {
+		ANNIHILATOR: '',
+		ATLAS: '',
+		AWESOME: '',
+		BANSHEE: '',
+		BATTLEMASTER: '',
+		CHARGER: 'HOTIS',
+		CORSAIR: 'HOTIS',
+		CYCLOPS: '',
+		HIGHLANDER: '',
+		'HATAMOTO-CHI': 'HOTIS',
+		'KING CRAB': '',
+		MAULER: '',
+		'MARAUDER 2': 'HOTIS',
+		NIGHTSTAR: '',
+		STALKER: '',
+		VICTOR: '',
+		ZEUS: '',
+	},
 }
 ---
 
@@ -70,11 +80,9 @@ const mechList = {
 	<div class="reelwrap">
 		<div class="reel m-2">
 			{
-				mechList.light.map((mech) => (
-					<a class="mechCard" data-name={mech}>
-						<div>{mech}</div>
-					</a>
-				))
+				Object.keys(mechList.light).map((mech) => {
+					return <MechCard name={mech} dlc={mechList.light[mech]} />
+				})
 			}
 		</div>
 		<div class="left"></div>
@@ -85,11 +93,9 @@ const mechList = {
 	<div class="reelwrap">
 		<div class="reel m-2">
 			{
-				mechList.medium.map((mech) => (
-					<a class="mechCard" data-name={mech}>
-						<div>{mech}</div>
-					</a>
-				))
+				Object.keys(mechList.medium).map((mech) => {
+					return <MechCard name={mech} dlc={mechList.medium[mech]} />
+				})
 			}
 		</div>
 		<div class="left"></div>
@@ -99,11 +105,9 @@ const mechList = {
 	<div class="reelwrap">
 		<div class="reel m-2">
 			{
-				mechList.heavy.map((mech) => (
-					<a class="mechCard" data-name={mech}>
-						<div>{mech}</div>
-					</a>
-				))
+				Object.keys(mechList.heavy).map((mech) => {
+					return <MechCard name={mech} dlc={mechList.heavy[mech]} />
+				})
 			}
 		</div>
 		<div class="left"></div>
@@ -113,11 +117,9 @@ const mechList = {
 	<div class="reelwrap">
 		<div class="reel m-2">
 			{
-				mechList.assault.map((mech) => (
-					<a class="mechCard" data-name={mech.toString()}>
-						<div>{mech}</div>
-					</a>
-				))
+				Object.keys(mechList.assault).map((mech) => {
+					return <MechCard name={mech} dlc={mechList.assault[mech]} />
+				})
 			}
 		</div>
 		<div class="left"></div>
@@ -186,25 +188,6 @@ const mechList = {
 		border-radius: 10px;
 		box-shadow: 0 0 5px black;
 	}
-	.mechCard {
-		flex: 0 0 150px;
-		height: 90%;
-		background-color: rgba(211, 211, 211, 0.547);
-		box-shadow: 0px 0px 4px 4px rgba(104, 104, 104, 0.945);
-		text-align: center;
-		line-height: 400px;
-		overflow-y: hidden;
-		color: white;
-		background-position: -25px -10px;
-	}
-	.mechCard:hover {
-		filter: brightness(125%);
-		line-height: 220px;
-		font-size: 1.15rem;
-		text-shadow: black 1px 1px 5px, black 0 0 10px;
-		font-weight: bold;
-		backdrop-filter: brightness(20%);
-	}
 </style>
 <script>
 	const container = document.querySelectorAll('.reel')
@@ -222,16 +205,10 @@ const mechList = {
 		const left = wrapper.querySelector('.left')
 		const right = wrapper.querySelector('.right')
 		left.addEventListener('click', () => {
-			reel.scrollLeft -= 50
+			reel.scrollLeft -= 100
 		})
 		right.addEventListener('click', () => {
-			reel.scrollLeft += 50
+			reel.scrollLeft += 100
 		})
-	})
-
-	const cards = document.querySelectorAll('.mechCard')
-	Array.from(cards).forEach((card) => {
-		let mechName = card.dataset.name
-		card.style.backgroundImage = `url(mechs/${mechName}.png)`
 	})
 </script>

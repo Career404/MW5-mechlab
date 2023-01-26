@@ -1,0 +1,55 @@
+---
+const { name, dlc = '' } = Astro.props
+---
+
+<a class="mechCard" data-name={name} data-dlc={dlc}>
+	<div class="name">{name}</div>
+	<div class="icon"></div>
+</a>
+<style>
+	.mechCard {
+		position: relative;
+		flex: 0 0 150px;
+		height: 90%;
+		background-color: rgba(211, 211, 211, 0.547);
+		box-shadow: 0px 0px 4px 4px rgba(104, 104, 104, 0.945);
+		overflow: hidden;
+		color: white;
+		background-position: -25px -10px;
+	}
+	.mechCard:hover {
+		filter: brightness(75%);
+		background-position: 0;
+		cursor: pointer;
+	}
+	.mechCard .name {
+		text-align: center;
+		line-height: 400px;
+	}
+	.mechCard .name:hover {
+		line-height: 220px;
+		font-size: 1.15rem;
+		text-shadow: black 1px 1px 5px, black 0 0 10px;
+		font-weight: bold;
+	}
+	.icon {
+		content: '';
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		width: 40px;
+		height: 40px;
+		background: transparent no-repeat center;
+		background-size: contain;
+	}
+</style>
+<script>
+	const cards = document.querySelectorAll('.mechCard')
+	Array.from(cards).forEach((card) => {
+		let mechName = card.dataset.name.replace(/\s/g, '')
+		card.style.backgroundImage = `url(mechs/${mechName}.png)`
+		let dlc = card.dataset.dlc
+		let icon = card.querySelector('.icon')
+		icon.style.backgroundImage = `url(ico/${dlc}-icon.png)`
+	})
+</script>
