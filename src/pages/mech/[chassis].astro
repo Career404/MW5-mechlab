@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/baseLayout.astro'
+import Header from '../../components/Header.astro'
+import { flatMechList } from '../../data/mechs'
+
+export async function getStaticPaths() {
+	return flatMechList.map((mech) => {
+		return {
+			params: { chassis: mech },
+			props: {
+				//mech info here
+			},
+		}
+	})
+}
+
+const { chassis } = Astro.params
+const {
+	//mech info here
+} = Astro.props
+---
+
+<BaseLayout title="MW5 mech list">
+	<Header title={chassis} />
+	<div class="info">
+		<div class="mechImage" id={chassis.replace(/\s/g, '')}></div>
+		<div class="spec">
+			<p>Class:</p>
+			<p>Weight:</p>
+			<p>Speed:</p>
+			<a href={`https://www.sarna.net/wiki/${chassis.toLowerCase()}`}
+				>Sarna wiki link</a
+			>
+		</div>
+	</div>
+</BaseLayout>
+<style>
+	.info {
+		padding: 50px;
+		display: flex;
+		justify-content: center;
+		gap: 25px;
+	}
+	.mechImage {
+		min-width: 400px;
+		min-height: 500px;
+		background: transparent no-repeat;
+		background-size: contain;
+		border-radius: 5px;
+	}
+	.spec {
+		flex: 0 1 400px;
+		padding: 10px;
+		font-size: 1.2rem;
+		background-color: rgba(36, 36, 36, 0.402);
+		border-radius: 5px;
+	}
+	.spec a {
+		font-size: 1.3rem;
+	}
+	.spec a:hover {
+		text-shadow: 0 0 2px black, 0 0 5px blue;
+	}
+</style>
+<script>
+	const imageContainer = document.querySelector('.mechImage')
+	let mechName = imageContainer.getAttribute('id')
+	imageContainer.style.backgroundImage = `url(/mechs/${mechName}.png)`
+</script>

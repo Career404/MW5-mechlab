@@ -2,7 +2,7 @@
 const { name, dlc = '' } = Astro.props
 ---
 
-<a class="mechCard" data-name={name} data-dlc={dlc}>
+<a href={`./mech/${name}`} class="mechCard" data-name={name} data-dlc={dlc}>
 	<div class="name">{name}</div>
 	<div class="icon"></div>
 </a>
@@ -49,7 +49,9 @@ const { name, dlc = '' } = Astro.props
 		let mechName = card.dataset.name.replace(/\s/g, '')
 		card.style.backgroundImage = `url(mechs/${mechName}.png)`
 		let dlc = card.dataset.dlc
-		let icon = card.querySelector('.icon')
-		icon.style.backgroundImage = `url(ico/${dlc}-icon.png)`
+		if (dlc != '') {
+			let icon = card.querySelector('.icon')
+			icon.style.backgroundImage = `url(ico/${dlc}-icon.png)`
+		}
 	})
 </script>

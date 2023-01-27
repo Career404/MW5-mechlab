@@ -74,7 +74,7 @@ const mechList = {
 }
 ---
 
-<div>
+<div class="m-2">
 	<h3 class="text-2xl">Light mechs (20-35 tons)</h3>
 
 	<div class="reelwrap">
@@ -152,7 +152,7 @@ const mechList = {
 		height: 0;
 		border-top: 15px solid transparent;
 		border-bottom: 15px solid transparent;
-		border-right: 15px solid rgba(0, 0, 0, 0.795);
+		border-right: 15px solid rgba(255, 255, 255, 0.795);
 		position: absolute;
 		top: 50%;
 		left: 10px;
@@ -167,7 +167,7 @@ const mechList = {
 		height: 0;
 		border-top: 15px solid transparent;
 		border-bottom: 15px solid transparent;
-		border-left: 15px solid rgba(0, 0, 0, 0.795);
+		border-left: 15px solid rgba(255, 255, 255, 0.795);
 		position: absolute;
 		top: 50%;
 		right: 10px;
@@ -194,7 +194,7 @@ const mechList = {
 	const wrap = document.querySelectorAll('.reelwrap')
 
 	Array.from(container).forEach((el) => {
-		el.addEventListener('wheel', function (event) {
+		el.addEventListener('wheel', (event) => {
 			event.preventDefault()
 			var delta = event.deltaX || event.deltaY
 			el.scrollLeft += delta * 1.5
