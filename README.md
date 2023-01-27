@@ -1,50 +1,8 @@
-# Welcome to [Astro](https://astro.build)
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
-
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Mechwarrior 5: Mercenaries [Mechlab](https://career404.github.io/MW5-mechlab)
+This game doesn't get enough love - neither from players, nor from the developers. Mechwarrior Online had an online mechlab for ages! [Several](https://mwo.smurfy-net.de/mechlab) [iterations](https://mech.nav-alpha.com/), [in fact](https://mwo.nav-alpha.com/)!
+It is time someone would restore the justice and give those in need to fool around a way to do it away from the game.
+## TODO:
+1. Struggling with GH-pages - the first thing to fix.
+2. Actual mechlab is not ready yet. This should be a priority (this actually is the point of this project)
+3. Connect with Yet Another Mechlab/weapons/weapons clan modders and allow for a full, uncut tinkering experience (mechlabbing without these mods is boring anyways). Adding mech variants from other mods would be cool too!
+4. I wanted to implement a styling trick and change screenshots to illustrations on the click of a button - but we'll see if there's a point to that (I'm not sure whether there's enough new designs for all mechs)
