@@ -1,23 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
-import { flatMechList } from '../../data/mechs'
+import { mechList } from '../../data/mechs'
 
 export async function getStaticPaths() {
-	return flatMechList.map((mech) => {
+	return mechList.map((mech) => {
 		return {
-			params: { chassis: mech },
+			params: { chassis: mech.chassis },
 			props: {
-				//mech info here
+				weightclass: mech.weightclass,
+				weight: mech.weight,
+				speed: mech.speed,
 			},
 		}
 	})
 }
 
 const { chassis } = Astro.params
-const {
-	//mech info here
-} = Astro.props
+const { weightclass, weight, speed } = Astro.props
 
 function linkFormatSarna(str: string): string {
 	let newString = str.replace(/-+/g, '-! ')
@@ -37,9 +37,9 @@ function linkFormatSarna(str: string): string {
 	<div class="info">
 		<div class="mechImage" id={chassis.replace(/\s/g, '')}></div>
 		<div class="spec">
-			<p>Class:</p>
-			<p>Weight:</p>
-			<p>Speed:</p>
+			<p>Class: {weightclass}</p>
+			<p>Weight: {weight} tons</p>
+			<p>Speed: {speed} kp/h</p>
 			<a href={`https://www.sarna.net/wiki/${linkFormatSarna(chassis)}`}
 				>Sarna wiki link</a
 			>
@@ -50,6 +50,7 @@ function linkFormatSarna(str: string): string {
 	.info {
 		padding: 50px;
 		display: flex;
+		flex-flow: row wrap;
 		justify-content: center;
 		gap: 25px;
 	}
