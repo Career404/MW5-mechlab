@@ -36,12 +36,16 @@ function linkFormatSarna(str: string): string {
 <BaseLayout title="MW5 mech list">
 	<Header title={chassis} />
 	<div class="info">
-		<div class="mechImage" id={chassis.replace(/\s/g, '')}>
+		<div
+			class="mechImage"
+			id={chassis.replace(/\s/g, '')}
+			style={`background-image: url(../../mechs/${chassis}.png)`}
+		>
 			{
 				DLC != '' && (
 					<div
 						class="dlcIcon"
-						style={`background-image: url(../ico/${DLC}-icon.png);`}
+						style={`background-image: url(../../ico/${DLC}-icon.png);`}
 					/>
 				)
 			}
@@ -98,8 +102,3 @@ function linkFormatSarna(str: string): string {
 		text-shadow: 0 0 2px black, 0 0 5px blue;
 	}
 </style>
-<script>
-	const imageContainer = document.querySelector('.mechImage')
-	let mechName = imageContainer.getAttribute('id')
-	imageContainer.style.backgroundImage = `url(../../mechs/${mechName}.png)`
-</script>
