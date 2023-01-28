@@ -11,13 +11,14 @@ export async function getStaticPaths() {
 				weightclass: mech.weightclass,
 				weight: mech.weight,
 				speed: mech.speed,
+				DLC: mech.DLC,
 			},
 		}
 	})
 }
 
 const { chassis } = Astro.params
-const { weightclass, weight, speed } = Astro.props
+const { weightclass, weight, speed, DLC } = Astro.props
 
 function linkFormatSarna(str: string): string {
 	let newString = str.replace(/-+/g, '-! ')
@@ -35,11 +36,21 @@ function linkFormatSarna(str: string): string {
 <BaseLayout title="MW5 mech list">
 	<Header title={chassis} />
 	<div class="info">
-		<div class="mechImage" id={chassis.replace(/\s/g, '')}></div>
+		<div class="mechImage" id={chassis.replace(/\s/g, '')}>
+			{
+				DLC != '' && (
+					<div
+						class="dlcIcon"
+						style={`background-image: url(../ico/${DLC}-icon.png);`}
+					/>
+				)
+			}
+		</div>
 		<div class="spec">
-			<p>Class: {weightclass}</p>
+			<p>Class: {weightclass[0].toUpperCase() + weightclass.slice(1)}</p>
 			<p>Weight: {weight} tons</p>
 			<p>Speed: {speed} kp/h</p>
+			{DLC != '' && <p>DLC: {DLC}</p>}
 			<a href={`https://www.sarna.net/wiki/${linkFormatSarna(chassis)}`}
 				>Sarna wiki link</a
 			>
@@ -61,6 +72,13 @@ function linkFormatSarna(str: string): string {
 		background-size: contain;
 		border-radius: 5px;
 	}
+	.dlcIcon {
+		margin: 5px;
+		width: 30px;
+		height: 30px;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
 	.spec {
 		flex: 0 1 400px;
 		min-width: 150px;
@@ -74,6 +92,7 @@ function linkFormatSarna(str: string): string {
 	}
 	.spec a {
 		font-size: 1.3rem;
+		text-decoration: underline solid;
 	}
 	.spec a:hover {
 		text-shadow: 0 0 2px black, 0 0 5px blue;
