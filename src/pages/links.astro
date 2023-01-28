@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+---
+
+<BaseLayout title="MW5 mech list">
+	<Header title="Useful links and resources" />
+	<div class="content-box">
+		<a href="https://mw5mercs.com/">Mechwarrior 5: Mercenaries - home page</a>
+		<a href="https://www.nexusmods.com/mechwarrior5mercenaries/mods/"
+			>Nexus Mods for MW5</a
+		>
+		<a href="https://www.moddb.com/games/mechwarrior-5-mercenaries"
+			>ModDb page for MW5</a
+		>
+		<a href="https://www.reddit.com/r/OutreachHPG/">Outreach HPG Reddit</a>
+		<a href="https://www.reddit.com/r/mechwarrior/">r/MechWarrior</a>
+	</div>
+</BaseLayout>
+<style>
+	.content-box {
+		margin: 10px 1rem;
+		width: calc(100% - 1.5rem);
+		min-height: 30vh;
+		background-color: rgba(36, 36, 36, 0.402);
+		box-shadow: 0px 0px 7px 8px rgb(104 104 104 / 95%);
+		padding: 10px;
+		border-radius: 15px;
+	}
+	.content-box a {
+		display: block;
+		position: relative;
+		margin-bottom: 10px;
+		font-size: 1.3rem;
+		color: white;
+		text-shadow: 0 0 2px blue, 0 0 5px blue;
+	}
+	.content-box a::after {
+		position: absolute;
+		content: '';
+		height: 2px;
+		width: 0px;
+		bottom: -2px;
+		left: 0;
+		background: blue linear-gradient(90deg, blue, white);
+		transition: ease-in 8s;
+	}
+	.content-box a:hover::after {
+		width: 100%;
+	}
+</style>
