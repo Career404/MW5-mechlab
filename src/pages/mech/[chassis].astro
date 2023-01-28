@@ -18,6 +18,18 @@ const { chassis } = Astro.params
 const {
 	//mech info here
 } = Astro.props
+
+function linkFormatSarna(str: string): string {
+	let newString = str.replace(/-+/g, '-! ')
+	newString = newString.replace(/\s+/g, '_')
+	let words = newString.split('_')
+	for (let i = 0; i < words.length; i++) {
+		words[i] =
+			words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase()
+	}
+	newString = words.join('_')
+	return newString.includes('-!_') ? newString.replace('!_', '') : newString
+}
 ---
 
 <BaseLayout title="MW5 mech list">
@@ -28,7 +40,7 @@ const {
 			<p>Class:</p>
 			<p>Weight:</p>
 			<p>Speed:</p>
-			<a href={`https://www.sarna.net/wiki/${chassis.toLowerCase()}`}
+			<a href={`https://www.sarna.net/wiki/${linkFormatSarna(chassis)}`}
 				>Sarna wiki link</a
 			>
 		</div>
@@ -42,7 +54,7 @@ const {
 		gap: 25px;
 	}
 	.mechImage {
-		min-width: 400px;
+		min-width: 300px;
 		min-height: 500px;
 		background: transparent no-repeat;
 		background-size: contain;
@@ -50,10 +62,14 @@ const {
 	}
 	.spec {
 		flex: 0 1 400px;
+		min-width: 150px;
 		padding: 10px;
-		font-size: 1.2rem;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-around;
 		background-color: rgba(36, 36, 36, 0.402);
 		border-radius: 5px;
+		font-size: 1.2rem;
 	}
 	.spec a {
 		font-size: 1.3rem;
