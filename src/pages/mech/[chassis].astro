@@ -1,16 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
-import { mechList } from '../../data/mechs'
+import Card from '../../components/Card.astro'
+import { mechList, MechObject } from '../../data/mechs'
 
 export async function getStaticPaths() {
 	return mechList.map((mech) => {
 		return {
 			params: { chassis: mech.chassis },
 			props: {
+				short: mech.short,
 				weightclass: mech.weightclass,
 				weight: mech.weight,
-				speed: mech.speed,
 				DLC: mech.DLC,
 			},
 		}
@@ -18,7 +19,15 @@ export async function getStaticPaths() {
 }
 
 const { chassis } = Astro.params
-const { weightclass, weight, speed, DLC } = Astro.props
+const { short, weightclass, weight, DLC } = Astro.props
+
+const MDAfiles = await Astro.glob('./../../data/MDA/**/*MDA.json')
+const selectedMDA = MDAfiles.filter(
+	(mda) => mda.chassisFullName.toLowerCase() === chassis.toLowerCase()
+)
+const MechObjects = selectedMDA.map((mda) => {
+	return new MechObject(mda)
+})
 
 function linkFormatSarna(str: string): string {
 	let newString = str.replace(/-+/g, '-! ')
@@ -39,13 +48,13 @@ function linkFormatSarna(str: string): string {
 		<div
 			class="mechImage"
 			id={chassis.replace(/\s/g, '')}
-			style={`background-image: url(../../mechs/${chassis}.png)`}
+			style={`background-image: url(./../mechs/${chassis}.png)`}
 		>
 			{
-				DLC != '' && (
+				DLC && (
 					<div
 						class="dlcIcon"
-						style={`background-image: url(../../ico/${DLC}-icon.png);`}
+						style={`background-image: url(./../ico/${DLC}-icon.png);`}
 					/>
 				)
 			}
@@ -53,13 +62,18 @@ function linkFormatSarna(str: string): string {
 		<div class="spec">
 			<p>Class: {weightclass[0].toUpperCase() + weightclass.slice(1)}</p>
 			<p>Weight: {weight} tons</p>
-			<p>Speed: {speed} kp/h</p>
-			{DLC != '' && <p>DLC: {DLC}</p>}
+			{DLC && <p>DLC: {DLC}</p>}
 			<a href={`https://www.sarna.net/wiki/${linkFormatSarna(chassis)}`}
 				>Sarna wiki link</a
 			>
 		</div>
 	</div>
+	<!-- 			{MechObjects.map((e)=>(
+				<Card>
+					<p>Variant name: {e.name}</p>
+					<p></p>
+				</Card>
+			))} -->
 </BaseLayout>
 <style>
 	.info {
@@ -101,5 +115,11 @@ function linkFormatSarna(str: string): string {
 	}
 	.spec a:hover {
 		text-shadow: 0 0 2px black, 0 0 5px blue;
+	}
+	button {
+		margin: 0 auto;
+		display: block;
+		font-size: 1.3rem;
+		text-align: center;
 	}
 </style>

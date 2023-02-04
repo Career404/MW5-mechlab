@@ -47,7 +47,7 @@ const { name, dlc = '' } = Astro.props
 	const cards = document.querySelectorAll('.mechCard')
 	Array.from(cards).forEach((card) => {
 		let mechName = card.dataset.name.replace(/\s/g, '')
-		card.style.backgroundImage = `url(mechs/${mechName}.png)`
+		card.style.backgroundImage = `url(/MW5-mechlab/mechs/${mechName}.png)`
 		let dlc = card.dataset.dlc
 		if (dlc != '') {
 			let icon = card.querySelector('.icon')
