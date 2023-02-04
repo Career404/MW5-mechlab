@@ -23,7 +23,7 @@ html {
 }
 
 body {
-	background: white url('/Background-new.jpg') no-repeat center;
+	background: white url('/MW5-mechlab/Background-new.jpg') no-repeat center;
 	background-size: cover;
 	background-attachment: fixed;
 }
@@ -40,7 +40,8 @@ body {
 		);
 	}
 	body {
-		background: rgb(22, 22, 46) url('/Background-new.jpg') no-repeat center;
+		background: rgb(22, 22, 46) url('/MW5-mechlab/Background-new.jpg') no-repeat
+			center;
 		background-size: cover;
 		background-blend-mode: soft-light;
 		background-attachment: fixed;
@@ -49,4 +50,10 @@ body {
 	header div {
 		background-color: rgba(74, 74, 74, 0.795);
 	}
+}
+h1,
+h2,
+h3,
+h4 {
+	text-align: center;
 }
