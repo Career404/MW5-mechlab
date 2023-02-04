@@ -1,0 +1,18 @@
+---
+import Card from './Card.astro'
+---
+
+<div>
+	<div class="cardGrid">
+		<slot />
+	</div>
+</div>
+<style>
+	.cardGrid {
+		display: grid;
+		justify-items: center;
+		gap: 25px;
+		grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+		border-radius: 5px;
+	}
+</style>
