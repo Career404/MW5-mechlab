@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Card from '../../components/Card.astro'
+import CardsGrid from '../../components/cardsGrid.astro'
 import { mechList, MechObject } from '../../data/mechs'
 
 export async function getStaticPaths() {
@@ -48,7 +49,7 @@ function linkFormatSarna(str: string): string {
 		<div
 			class="mechImage"
 			id={chassis.replace(/\s/g, '')}
-			style={`background-image: url(./../mechs/${chassis.replaceAll(
+			style={`background-image: url(/MW5-mechlab/mechs/${chassis.replaceAll(
 				/\s+/g,
 				''
 			)}.png)`}
@@ -57,7 +58,7 @@ function linkFormatSarna(str: string): string {
 				DLC && (
 					<div
 						class="dlcIcon"
-						style={`background-image: url(./../ico/${DLC}-icon.png);`}
+						style={`background-image: url(/MW5-mechlab/ico/${DLC}-icon.png);`}
 					/>
 				)
 			}
@@ -71,12 +72,16 @@ function linkFormatSarna(str: string): string {
 			>
 		</div>
 	</div>
-	<!-- 			{MechObjects.map((e)=>(
+	<CardsGrid>
+		{
+			MechObjects.map((e) => (
 				<Card>
-					<p>Variant name: {e.name}</p>
-					<p></p>
+					<h2>Variant name: {e.name}</h2>
+					<p> </p>
 				</Card>
-			))} -->
+			))
+		}
+	</CardsGrid>
 </BaseLayout>
 <style>
 	.info {
@@ -101,14 +106,15 @@ function linkFormatSarna(str: string): string {
 		background-repeat: no-repeat;
 	}
 	.spec {
-		flex: 0 1 400px;
+		flex: 0 1 300px;
 		min-width: 150px;
 		padding: 10px;
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-around;
-		background-color: rgba(36, 36, 36, 0.402);
-		border-radius: 5px;
+		background-color: rgba(36, 36, 36, 0.5);
+		box-shadow: 0px 0px 7px 8px rgb(104 104 104 / 95%);
+		border-radius: 15px;
 		font-size: 1.2rem;
 		color: white;
 	}
@@ -118,11 +124,5 @@ function linkFormatSarna(str: string): string {
 	}
 	.spec a:hover {
 		text-shadow: 0 0 2px black, 0 0 5px blue;
-	}
-	button {
-		margin: 0 auto;
-		display: block;
-		font-size: 1.3rem;
-		text-align: center;
 	}
 </style>
