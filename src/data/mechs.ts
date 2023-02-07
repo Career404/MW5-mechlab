@@ -90,7 +90,7 @@ const HIGHLANDER = new MechChassis('HIGHLANDER', 'HGN', 90)
 const HATAMOTOCHI = new MechChassis('HATAMOTO-CHI', 'HTM', 80, 'HOTIS')
 const KINGCRAB = new MechChassis('KING CRAB', 'KGC', 100)
 const MAULER = new MechChassis('MAULER', 'MAL', 90)
-const MARAUDER2 = new MechChassis('MARAUDER 2', 'MAD', 100, 'HOTIS')
+const MARAUDER2 = new MechChassis('MARAUDER II', 'MAD', 100, 'HOTIS')
 const NIGHTSTAR = new MechChassis('NIGHTSTAR', 'NSR', 95)
 const STALKER = new MechChassis('STALKER', 'STK', 85)
 const VICTOR = new MechChassis('VICTOR', 'VTR', 80)
@@ -329,6 +329,7 @@ function findDLC(str) {
 			'CRD-4L',
 			'CRD-5M',
 			'CRD-5S',
+			'CRD-CR',
 		],
 	]
 	if (DLC1VariantsArray.includes(str)) {
