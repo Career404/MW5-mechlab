@@ -20,6 +20,7 @@ import Styler from './Styler.astro'
 		margin-bottom: 10px;
 		display: grid;
 		align-items: center;
+		font-size: 16px;
 		gap: 1rem;
 		grid-template-areas:
 			'links title title title style'
@@ -33,7 +34,8 @@ import Styler from './Styler.astro'
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.5rem;
+		text-align: center;
+		font-size: 1.3em;
 		color: white;
 		min-height: 75px;
 	}
@@ -41,10 +43,7 @@ import Styler from './Styler.astro'
 		filter: hue-rotate(100deg);
 	}
 	.title h1 {
-		font-size: 36px;
-	}
-	.title h2 {
-		font-size: 20px;
+		font-size: 1.2em;
 	}
 	.title {
 		grid-area: title;
@@ -62,5 +61,14 @@ import Styler from './Styler.astro'
 	}
 	.mechlab {
 		grid-area: mechlab;
+	}
+	@media (max-width: 671px) {
+		header {
+			font-size: 13px;
+			grid-template-areas:
+				'title title title title'
+				'links list style mechlab';
+			grid-template-rows: auto;
+		}
 	}
 </style>
