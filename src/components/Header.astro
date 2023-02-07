@@ -8,7 +8,7 @@ import Styler from './Styler.astro'
 	<div class="style"><Styler /></div>
 	<div class="title">
 		<h1>{title}</h1>
-		<h2>{sub}</h2>
+		{sub !== '' && <h2>{sub}</h2>}
 	</div>
 	<a href="/MW5-mechlab/"><div class="list">Mechs and variants</div></a>
 	<a href="#"><div class="mechlab">Mechlab (WiP)</div></a>
@@ -47,7 +47,7 @@ import Styler from './Styler.astro'
 	}
 	.title {
 		grid-area: title;
-		display: block;
+		flex-flow: column nowrap;
 		text-align: center;
 	}
 	.links {
