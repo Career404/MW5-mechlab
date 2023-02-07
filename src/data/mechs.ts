@@ -176,6 +176,7 @@ type MDA = typeof CPLTJMDA
 export class MechObject {
 	public name?: string
 	public mda?: MDA
+	public installedWeaponsMda: any
 	public mechChassis?: MechChassis
 	public isComplete: boolean = false
 	public DLC: '' | 'HOTIS' | 'KESTREL' | 'ARMS' | 'RAS'
@@ -195,9 +196,30 @@ export class MechObject {
 			)
 			mechList.push(this.mechChassis)
 		}
+		this.installedWeaponsMda = showWeapons(this.mda.selectedWeaponHardPoints)
 		this.DLC = this.mechChassis.DLC ? this.mechChassis.DLC : findDLC(this.name)
-		this.isComplete = this.name && this.mda && this.mechChassis ? true : false
+		this.isComplete =
+			this.name && this.mda && this.installedWeaponsMda && this.mechChassis
+				? true
+				: false
 	}
+}
+function showWeapons(h: string[]) {
+	const weapons = { head: [], rt: [], ct: [], lt: [], ra: [], la: [] }
+	h.forEach((e) => {
+		e.includes('Head')
+			? weapons.head.push(e.substring(e.lastIndexOf('_') + 1, e.length))
+			: e.includes('Torso_Left')
+			? weapons.lt.push(e.substring(e.lastIndexOf('_') + 1, e.length))
+			: e.includes('Torso_Right')
+			? weapons.rt.push(e.substring(e.lastIndexOf('_') + 1, e.length))
+			: e.includes('arm_Left')
+			? weapons.la.push(e.substring(e.lastIndexOf('_') + 1, e.length))
+			: e.includes('arm_Right')
+			? weapons.ra.push(e.substring(e.lastIndexOf('_') + 1, e.length))
+			: null
+	})
+	return weapons
 }
 function findDLC(str) {
 	const DLC1VariantsArray = [
