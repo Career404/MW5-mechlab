@@ -171,7 +171,7 @@ export const flatMechList = mechList.map((obj) => obj.chassis)
 
 //!
 
-type MDA = typeof CPLTJMDA
+export type MDA = typeof CPLTJMDA
 
 export class MechObject {
 	public name?: string

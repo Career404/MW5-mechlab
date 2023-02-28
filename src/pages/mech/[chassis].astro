@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import CardsGrid from '../../components/CardsGrid.astro'
 import Card from '../../components/Card.astro'
-import { mechList, MechObject } from '../../data/mechs'
+import { mechList, MechObject, MDA } from '../../data/mechs'
 
 export async function getStaticPaths() {
 	return mechList.map((mech) => {
@@ -29,7 +29,7 @@ const selectedMDA = MDAfiles.filter(
 		chassis.replaceAll(' ', '').toLowerCase()
 )
 const MechObjects = selectedMDA.map((mda) => {
-	return new MechObject(mda)
+	return new MechObject(mda as MDA)
 })
 
 function linkFormatSarna(str: string): string {
@@ -96,9 +96,13 @@ function linkFormatSarna(str: string): string {
 
 						<p>
 							Speed:
-							{Math.floor(
-								(e.mda.engineRating / e.mda.mechDataStats.baseStats.tons) * 16.2
-							)}
+							{
+								//! Speed equation
+								Math.floor(
+									(e.mda.engineRating / e.mda.mechDataStats.baseStats.tons) *
+										16.2
+								)
+							}
 							kp/h
 						</p>
 						<p>
@@ -244,7 +248,7 @@ function linkFormatSarna(str: string): string {
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-around;
-		background-color: rgba(36, 36, 36, 0.5);
+		background-color: rgba(36, 36, 36, 0.7);
 		box-shadow: 0px 0px 7px 8px rgb(104 104 104 / 95%);
 		border-radius: 15px;
 		font-size: 1.2rem;
