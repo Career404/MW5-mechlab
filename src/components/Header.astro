@@ -4,14 +4,16 @@ import Styler from './Styler.astro'
 ---
 
 <header>
-	<a href="/MW5-mechlab/links"><div class="links">Useful links</div></a>
-	<div class="style"><Styler /></div>
+	<a class="sideElement" href="/MW5-mechlab/links"
+		><div class="links">Links</div></a
+	>
+	<div class="sideElement style" id="themeToggle"><Styler /></div>
 	<div class="title">
 		<h1>{title}</h1>
 		{sub !== '' && <h2>{sub}</h2>}
 	</div>
-	<a href="/MW5-mechlab/"><div class="list">Mechs and variants</div></a>
-	<a href="#"><div class="mechlab">Mechlab (WiP)</div></a>
+	<a class="sideElement" href="/MW5-mechlab/"><div class="links">Mechs</div></a>
+	<a class="sideElement" href="#"><div class="mechlab">Mechlab (WiP)</div></a>
 </header>
 <style>
 	header {
@@ -24,7 +26,7 @@ import Styler from './Styler.astro'
 		gap: 1rem;
 		grid-template-areas:
 			'links title title title style'
-			'list title title title mechlab';
+			'links title title title mechlab';
 	}
 	header div {
 		background-color: rgba(36, 36, 36, 0.5);
@@ -39,11 +41,11 @@ import Styler from './Styler.astro'
 		color: white;
 		min-height: 75px;
 	}
-	header div:hover {
-		filter: hue-rotate(100deg);
+	header .sideElement:hover {
+		backdrop-filter: brightness(70%);
 	}
 	.title h1 {
-		font-size: 1.2em;
+		font-size: 1.3em;
 	}
 	.title {
 		grid-area: title;
@@ -56,19 +58,17 @@ import Styler from './Styler.astro'
 	.style {
 		grid-area: style;
 	}
-	.list {
-		grid-area: list;
+	.links {
+		grid-area: links;
 	}
 	.mechlab {
 		grid-area: mechlab;
 	}
 	@media (max-width: 671px) {
 		header {
-			font-size: 13px;
 			grid-template-areas:
 				'title title title title'
-				'links list style mechlab';
-			grid-template-rows: auto;
+				'links links style mechlab';
 		}
 	}
 </style>
